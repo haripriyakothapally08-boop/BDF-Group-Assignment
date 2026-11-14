@@ -4,11 +4,29 @@
 
 **AutoFix Garage – Service Bays API** is a backend application developed using Node.js, Express.js, and SQLite.
 
-In a garage, service bays are often assigned verbally. This can cause overlapping jobs and confusion about which bay is available.
+In a garage, service bays are often assigned verbally, which can cause overlapping jobs and confusion about bay availability.
 
 This project provides REST APIs to manage mechanics, service bays, and assignments. It helps organize garage operations and prevents duplicate bay assignments.
 
-## 2. Technologies Used
+## 2. Team Members and Contributions
+
+| S. No. | Student Name | Roll Number | Individual Contribution |
+|:---:|---|:---:|---|
+| 1 | Amara Srividya | 9007 | Server setup and routes |
+| 2 | Gurrala Sujith | 9045 | Database creation and queries |
+| 3 | Golla Ganesh | 9041 | REST API endpoints |
+| 4 | Avula Druvathi | 9014 | Validation and search |
+| 5 | Chenchu Dinesh | 9024 | Postman testing and README documentation |
+| 6 | Kothapally Hari Priya | 9075 | Implemented soft delete and restore functionality for bays, hid deleted bays from lists and single-record fetches, and verified Twist Tests 1–3. |
+
+## 3. Deployment Link
+https://bdf-group-assignment-bp5g.onrender.com
+
+| Platform | Link |
+|---|---|
+| Backend Deployment | [Add Your Render Deployment URL Here](#) |
+
+## 4. Technologies Used
 
 - Node.js
 - Express.js
@@ -16,17 +34,7 @@ This project provides REST APIs to manage mechanics, service bays, and assignmen
 - JavaScript
 - Postman
 
-## 3. Team Members and Contributions
-
-S. No. Student Name Roll Number Individual Contribution
-1 Amara Srividya 9007 Server setup and routes
-2 Gurrala Sujith 9045 Database creation and queries
-3 Golla Ganesh 9041 REST API endpoints
-4 Avula Druvathi 9014 Validation and search
-5 Chenchu Dinesh 9024 Postman testing and README documentation
-6 Kothapally Hari Priya 9075 Implemented soft delete and restore functionality for bays, hid deleted bays from lists and single-record fetches, and verified Twist Tests 1–3.
-
-## 4. How to Run the Project
+## 5. How to Run the Project
 
 ### Step 1: Clone the Repository
 
@@ -60,72 +68,72 @@ http://localhost:3000
 
 The SQLite database (`autofix.db`) is created automatically, and sample data is inserted when the application initializes.
 
-## 5. Database Design
+## 6. Database Design
 
 The project uses three tables.
 
-### Mechanics Table
+### 6.1 Mechanics Table
 
 Stores mechanic details.
 
-| Column    | Description        |
-| --------- | ------------------ |
-| id        | Mechanic ID        |
-| name      | Mechanic name      |
+| Column | Description |
+|---|---|
+| id | Mechanic ID |
+| name | Mechanic name |
 | specialty | Mechanic specialty |
 
-### Bays Table
+### 6.2 Bays Table
 
 Stores service bay details.
 
-| Column  | Description                 |
-| ------- | --------------------------- |
-| id      | Bay ID                      |
-| name    | Bay name                    |
+| Column | Description |
+|---|---|
+| id | Bay ID |
+| name | Bay name |
 | vehicle | Vehicle assigned to the bay |
-| deleted | Soft-delete status          |
+| deleted | Soft-delete status |
 
-### Assignments Table
+### 6.3 Assignments Table
 
 Stores mechanic and bay assignments.
 
-| Column      | Description           |
-| ----------- | --------------------- |
-| id          | Assignment ID         |
-| mechanic_id | Assigned mechanic ID  |
-| bay_id      | Assigned bay ID       |
-| job         | Job description       |
-| start_time  | Assignment start time |
+| Column | Description |
+|---|---|
+| id | Assignment ID |
+| mechanic_id | Assigned mechanic ID |
+| bay_id | Assigned bay ID |
+| job | Job description |
+| start_time | Assignment start time |
 
-## 6. API Endpoints
+## 7. API Endpoints
 
-### Service Bays
+### 7.1 Service Bays
 
-| Method | Endpoint            | Description           |
-| ------ | ------------------- | --------------------- |
-| GET    | `/bays`             | Get all active bays   |
-| GET    | `/bays/:id`         | Get a bay by ID       |
-| POST   | `/bays`             | Create a new bay      |
-| PUT    | `/bays/:id`         | Update a bay          |
-| DELETE | `/bays/:id`         | Soft-delete a bay     |
-| POST   | `/bays/:id/restore` | Restore a deleted bay |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/bays` | Get all active bays |
+| GET | `/bays/:id` | Get a bay by ID |
+| POST | `/bays` | Create a new bay |
+| PUT | `/bays/:id` | Update a bay |
+| DELETE | `/bays/:id` | Soft-delete a bay |
+| POST | `/bays/:id/restore` | Restore a deleted bay |
 
-### Mechanics
+### 7.2 Mechanics
 
-| Method | Endpoint         | Description          |
-| ------ | ---------------- | -------------------- |
-| GET    | `/mechanics`     | Get all mechanics    |
-| GET    | `/mechanics/:id` | Get a mechanic by ID |
-| POST   | `/mechanics`     | Add a new mechanic   |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/mechanics` | Get all mechanics |
+| GET | `/mechanics/:id` | Get a mechanic by ID |
+| POST | `/mechanics` | Add a new mechanic |
 
-### Assignments
+### 7.3 Assignments
 
-| Method | Endpoint       | Description                                   |
-| ------ | -------------- | --------------------------------------------- |
-| GET    | `/assignments` | Get assignments with mechanic and bay details |
-| POST   | `/assignments` | Create a new assignment                       |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/assignments` | Get assignments with mechanic and bay details |
+| POST | `/assignments` | Create a new assignment |
 
-## 7. Validation and Search
+## 8. Validation and Search
 
 The application includes input validation to ensure that the API receives valid data.
 
@@ -135,80 +143,84 @@ The application includes input validation to ensure that the API receives valid 
 - Search functionality allows users to search bays using vehicle or bay name.
 - Duplicate bay assignments are prevented.
 
-## 8. Special Feature – Soft Delete and Restore
+## 9. Special Feature – Soft Delete and Restore
 
 The project implements a soft-delete feature for service bays.
 
 Instead of permanently deleting a bay from the database, its `deleted` value is changed.
 
-- **DELETE `/bays/6`** – Marks Bay 6 as deleted.
-- **GET `/bays`** – Does not display deleted bays.
-- **GET `/bays/6`** – Returns 404 when the bay is deleted.
-- **POST `/bays/6/restore`** – Restores the deleted bay.
-- **GET `/bays/6`** – Returns the bay after restoration.
-- Restoring a bay that is already active returns a 400 error.
+The following operations demonstrate this functionality:
 
-## 9. Postman Testing Screenshots
+| Operation | Endpoint | Expected Result |
+|---|---|---|
+| Delete Bay 6 | `DELETE /bays/6` | 200 OK – Bay marked as deleted |
+| Get All Bays | `GET /bays` | 200 OK – Deleted bays are hidden |
+| Get Deleted Bay | `GET /bays/6` | 404 Not Found |
+| Restore Bay 6 | `POST /bays/6/restore` | 200 OK – Bay restored |
+| Get Restored Bay | `GET /bays/6` | 200 OK – Bay is available again |
+| Restore Active Bay | `POST /bays/6/restore` | 400 Bad Request |
+
+## 10. Postman Testing Screenshots
 
 The APIs were tested using Postman. The following screenshots demonstrate the soft-delete and restore functionality and the overall test results.
 
-**Screenshot 1: Delete Bay 6**
+### Screenshot 1: Delete Bay 6
 
-DELETE `/bays/6`
+**Request:** `DELETE /bays/6`
 
-Expected result: 200 OK. Bay 6 is marked as deleted.
+**Expected Result:** 200 OK. Bay 6 is marked as deleted.
 
 ![Delete Bay 6](screenshots/01_Delete_Bay_6.png)
 
-**Screenshot 2: Get All Bays**
+### Screenshot 2: Get All Bays
 
-GET `/bays`
+**Request:** `GET /bays`
 
-Expected result: 200 OK. Bay 6 should not appear in the response.
+**Expected Result:** 200 OK. Bay 6 should not appear in the response.
 
 ![Get All Bays](screenshots/02_Get_All_Bays.png)
 
-**Screenshot 3: Get Deleted Bay**
+### Screenshot 3: Get Deleted Bay
 
-GET `/bays/6`
+**Request:** `GET /bays/6`
 
-Expected result: 404 Not Found because Bay 6 is deleted.
+**Expected Result:** 404 Not Found because Bay 6 is deleted.
 
 ![Get Deleted Bay](screenshots/03_Get_Deleted_Bay.png)
 
-**Screenshot 4: Restore Bay 6**
+### Screenshot 4: Restore Bay 6
 
-POST `/bays/6/restore`
+**Request:** `POST /bays/6/restore`
 
-Expected result: 200 OK. Bay 6 is restored successfully.
+**Expected Result:** 200 OK. Bay 6 is restored successfully.
 
 ![Restore Bay 6](screenshots/04_Restore_Bay_6.png)
 
-**Screenshot 5: Get Restored Bay**
+### Screenshot 5: Get Restored Bay
 
-GET `/bays/6`
+**Request:** `GET /bays/6`
 
-Expected result: 200 OK. Bay 6 is available again.
+**Expected Result:** 200 OK. Bay 6 is available again.
 
 ![Get Restored Bay](screenshots/05_Get_Restored_Bay.png)
 
-**Screenshot 6: Restore an Already Restored Bay**
+### Screenshot 6: Restore an Already Restored Bay
 
-POST `/bays/6/restore`
+**Request:** `POST /bays/6/restore`
 
-Expected result: 400 Bad Request because the bay is already active.
+**Expected Result:** 400 Bad Request because the bay is already active.
 
 ![Restore Already Restored Bay](screenshots/06_Restore_Already_Restored.png)
 
-**Screenshot 7: Postman Collection Runner Results**
+### Screenshot 7: Postman Collection Runner Results
 
 The complete Postman collection was executed using the Collection Runner.
 
-Expected result: 25 tests passed and 0 tests failed.
+**Expected Result:** 25 tests passed and 0 tests failed.
 
 ![Postman Test Results](screenshots/07_Postman_Test_Results.png)
 
-## 10. Postman Collection
+## 11. Postman Collection
 
 The Postman collection contains 25 requests covering different API functionalities.
 
@@ -221,7 +233,7 @@ The requests are organized into the following categories:
 - Assignments and JOIN
 - Mechanics
 
-The collection file is available at:
+**Collection File:**
 
 ```text
 postman/AutoFix_Garage.postman_collection.json
@@ -229,11 +241,11 @@ postman/AutoFix_Garage.postman_collection.json
 
 The collection uses the following variable:
 
-| Variable | Value                   |
-| -------- | ----------------------- |
-| baseUrl  | `http://localhost:3000` |
+| Variable | Value |
+|---|---|
+| baseUrl | `http://localhost:3000` |
 
-## 11. Project Structure
+## 12. Project Structure
 
 ```text
 autofix-garage/
@@ -243,6 +255,8 @@ autofix-garage/
 ├── package.json
 ├── autofix.db
 │
+├── postman/
+│   └── AutoFix_Garage.postman_collection.json
 │
 ├── screenshots/
 │   ├── 01_Delete_Bay_6.png
@@ -256,6 +270,10 @@ autofix-garage/
 └── README.md
 ```
 
-## 12. Conclusion
+## 13. Conclusion
 
-The AutoFix Garage – Service Bays API provides a simple way to manage service bays, mechanics, and assignments. It supports CRUD operations, validation, search, and JOIN queries. The soft-delete and restore feature helps manage service bays without permanently removing records. All API functionalities were tested using Postman.
+The AutoFix Garage – Service Bays API provides a simple way to manage service bays, mechanics, and assignments.
+
+It supports CRUD operations, validation, search, and JOIN queries. The soft-delete and restore feature helps manage service bays without permanently removing records.
+
+All API functionalities were tested using Postman, demonstrating the successful implementation of the project.
