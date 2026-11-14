@@ -20,11 +20,11 @@ This project provides REST APIs to manage mechanics, service bays, and assignmen
 | 6 | Kothapally Hari Priya | 9075 | Implemented soft delete and restore functionality for bays, hid deleted bays from lists and single-record fetches, and verified Twist Tests 1–3. |
 
 ## 3. Deployment Link
-https://bdf-group-assignment-bp5g.onrender.com
+
 
 | Platform | Link |
 |---|---|
-| Backend Deployment | [Add Your Render Deployment URL Here](#) |
+| Backend Deployment | [https://bdf-group-assignment-bp5g.onrender.com](#) |
 
 ## 4. Technologies Used
 
